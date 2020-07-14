@@ -9,12 +9,42 @@ public class Memento {
      //        d’un second pour la restitution du composite, 
      //        représentent une solution possible. 
      
+     private Cotisant state;
      public Memento(Cotisant c) {
-       // sauvegarde
-     }
+         
+     
+         this.state = copy(c); 
+          
+     
+    }
 
      public void setState(Cotisant c) {
-       // restitution
+       this.state = c;
      }
+     
+     public Cotisant getState ()
+     {
+         return this.state;
+        }
+     
+     public Cotisant copy(Cotisant c)
+     {
+         if( c instanceof Contributeur)
+         {
+             Contributeur co =  (Contributeur)c;
+             return new Contributeur(co.nom(), co.solde());
+            }
+            else
+            {
+                GroupeDeContributeurs g = (GroupeDeContributeurs)c;
+                GroupeDeContributeurs nouveau = new GroupeDeContributeurs(g.nom());
+                for(Cotisant co : g.getChildren())
+                {
+                    nouveau.ajouter(copy(co));
+                }
+                return nouveau;
+                
+            }
+        }
     
     }

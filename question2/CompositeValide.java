@@ -9,12 +9,12 @@ public class CompositeValide implements Visiteur<Boolean>{
   // et il n’existe pas de groupe n’ayant pas de contributeurs.
   
   public Boolean visite(Contributeur c){
-    return false; // a compléter;
+    return c.solde()>=0;
   }
   
   public Boolean visite(GroupeDeContributeurs g){
-    boolean res = false;// a compléter
-    // a compléter
-    return res ;
+      
+      return g.solde()>=0 && g.nombreDeCotisants()>0;
+      
   }
 }

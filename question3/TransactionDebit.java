@@ -18,6 +18,13 @@ public class TransactionDebit extends AbstractTransaction{
   }
   
   public  void rollbackTransaction(){
-    gardien.getMemento().setState(cotisant);
+      
+     
+   Memento m = gardien.getMemento();
+   this.cotisant = m.getState();
+  
+      
+
+   
   }
 }
